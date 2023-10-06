@@ -28,3 +28,18 @@ func TestCreateUserDB(t *testing.T) {
 	assert.Equal(t, user.Name, userFound.Name)
 	assert.NotEmpty(t, userFound.Password)
 }
+
+func TestFindUserByEmail(t *testing.T) {
+	db, err := gorm.Open(sqlite.Open("file:memory.db"), &gorm.Config{})
+	if err != nil {
+		t.Error(err)
+	}
+	userDB := NewUserDB(db)
+	userFound, err := userDB.FindByEmail("jo@doe.com")
+	assert.Nil(t, err)
+	assert.NotNil(t, userFound)
+
+	userFound, err = userDB.FindByEmail("joe@doe.com")
+	assert.NotNil(t, err)
+	assert.Nil(t, userFound)
+}
