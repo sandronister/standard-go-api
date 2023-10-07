@@ -1,0 +1,8 @@
+POST http://localhost:8080/user
+Content-Type: "application/json"
+
+{
+    "name":"Julio Sandroni",
+    "email":"jo@ig.com",
+    "password":"1234"
+}
