@@ -95,3 +95,24 @@ func (h *productHandler) Update(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(&product)
 }
+
+func (h *productHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	_, err := h.ProductDB.FindById(id)
+	if err != nil {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
+	err = h.ProductDB.Delete(id)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}

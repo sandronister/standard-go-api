@@ -19,3 +19,8 @@ PUT http://localhost:8080/products/c9a0a8e1-063d-4994-8bb1-a17758c33ba3
     "name":"Caneca Linux",
     "price":300.20
 }
+
+
+###
+
+DELETE  http://localhost:8080/products/c9a0a8e1-063d-4994-8bb1-a17758c33ba3
