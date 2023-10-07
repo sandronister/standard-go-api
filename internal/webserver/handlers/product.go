@@ -8,6 +8,7 @@ import (
 	"github.com/sandronister/standart-go-api/internal/dto"
 	"github.com/sandronister/standart-go-api/internal/entity"
 	"github.com/sandronister/standart-go-api/internal/infra/database"
+	entityPKG "github.com/sandronister/standart-go-api/pkg/entity"
 )
 
 type productHandler struct {
@@ -53,6 +54,38 @@ func (h *productHandler) FindOne(w http.ResponseWriter, r *http.Request) {
 	}
 
 	product, err := h.ProductDB.FindById(id)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(&product)
+}
+
+func (h *productHandler) Update(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	product := entity.Product{}
+	err := json.NewDecoder(r.Body).Decode(&product)
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	product.ID, err = entityPKG.ParseId(id)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	err = h.ProductDB.Update(&product)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
