@@ -1,11 +1,37 @@
 package main
 
-import "github.com/sandronister/standart-go-api/configs"
+import (
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	"github.com/sandronister/standart-go-api/configs"
+	"github.com/sandronister/standart-go-api/internal/entity"
+	"github.com/sandronister/standart-go-api/internal/infra/database"
+	"github.com/sandronister/standart-go-api/internal/webserver/handlers"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+)
 
 func main() {
-	configs, err := configs.LoadConfig(".")
+	_, err := configs.LoadConfig(".")
 	if err != nil {
 		panic(err)
 	}
-	print(configs.DBDriver)
+
+	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	if err != nil {
+		panic(err)
+	}
+
+	db.AutoMigrate(&entity.User{}, &entity.Product{})
+
+	productDB := database.NewProductDB(db)
+	productHandler := handlers.NewProductHandler(productDB)
+
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
+	r.Post("/products", productHandler.Create)
+
+	http.ListenAndServe(":8080", r)
 }
