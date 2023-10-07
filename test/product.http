@@ -5,3 +5,8 @@ Content-Type: "application/json"
     "name":"Fone Apple 230TWS",
     "price":100.20
 }
+
+###
+
+GET http://localhost:8080/products/c9a0a8e1-063d-4994-8bb1-a17758c33ba3
+Content-Type: "application/json"
