@@ -33,6 +33,7 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Post("/products", productHandler.Create)
 	r.Get("/products/{id}", productHandler.FindOne)
+	r.Get("/products", productHandler.GetProducts)
 	r.Put("/products/{id}", productHandler.Update)
 	r.Delete("/products/{id}", productHandler.Delete)
 	http.ListenAndServe(":8080", r)
