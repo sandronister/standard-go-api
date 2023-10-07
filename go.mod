@@ -3,6 +3,7 @@ module github.com/sandronister/standart-go-api
 go 1.21.1
 
 require (
+	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/jwtauth/v5 v5.1.1
 	github.com/google/uuid v1.1.2
 	github.com/spf13/viper v1.17.0

@@ -1,0 +1,7 @@
+POST http://localhost:8080/products
+Content-Type: "application/json"
+
+{
+    "name":"Fone Apple 230TWS",
+    "price":100.20
+}
