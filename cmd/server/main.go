@@ -32,6 +32,6 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Post("/products", productHandler.Create)
-
+	r.Get("/products/{id}", productHandler.FindOne)
 	http.ListenAndServe(":8080", r)
 }
