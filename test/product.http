@@ -8,7 +8,7 @@ Content-Type: "application/json"
 
 ###
 
-GET http://localhost:8080/products/c9a0a8e1-063d-4994-8bb1-a17758c33ba3
+GET http://localhost:8080/products/ecd4fb8b-a7a8-4e33-8099-0d868ceb57e1
 Content-Type: "application/json"
 
 ###
@@ -29,4 +29,5 @@ DELETE  http://localhost:8080/products/dc56b970-355d-4535-a9b3-7ce550ac9b61
 ###
 
 GET http://localhost:8080/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY3ODY1MjgsInN1YiI6IjU2OTM1MjY2LWU0YTMtNGIxNS1iNGRmLThkM2U3MGExZDIwOSJ9.aLcdL9r5RwQW8xSkecWib9CWw8HvDtIZIt_GACOFmzg
 Content-Type: "application/json"

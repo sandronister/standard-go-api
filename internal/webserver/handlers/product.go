@@ -106,7 +106,7 @@ func (h *productHandler) Delete(w http.ResponseWriter, r *http.Request) {
 
 	_, err := h.ProductDB.FindById(id)
 	if err != nil {
-		w.WriteHeader(http.StatusNoContent)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
