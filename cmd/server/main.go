@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	_, err := configs.LoadConfig(".")
+	configs, err := configs.LoadConfig(".")
 	if err != nil {
 		panic(err)
 	}
@@ -30,7 +30,7 @@ func main() {
 	productHandler := handlers.NewProductHandler(productDB)
 
 	userDB := database.NewUserDB(db)
-	userHandler := handlers.NewUserHanlder(userDB)
+	userHandler := handlers.NewUserHanlder(userDB, configs.TokenAuth, configs.JWTExpiresIn)
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
@@ -41,6 +41,7 @@ func main() {
 	r.Delete("/products/{id}", productHandler.Delete)
 
 	r.Post("/user", userHandler.Create)
+	r.Post("/user/login", userHandler.GetJWT)
 
 	http.ListenAndServe(":8080", r)
 }
