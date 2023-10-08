@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/jwtauth/v5"
 	"github.com/sandronister/standart-go-api/configs"
 	"github.com/sandronister/standart-go-api/internal/entity"
 	"github.com/sandronister/standart-go-api/internal/infra/database"
@@ -34,11 +36,18 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	r.Post("/products", productHandler.Create)
-	r.Get("/products/{id}", productHandler.FindOne)
-	r.Get("/products", productHandler.GetProducts)
-	r.Put("/products/{id}", productHandler.Update)
-	r.Delete("/products/{id}", productHandler.Delete)
+
+	fmt.Print(configs.JWTSecret)
+
+	r.Route("/products", func(r chi.Router) {
+		r.Use(jwtauth.Verifier(configs.TokenAuth))
+		r.Use(jwtauth.Authenticator)
+		r.Post("/", productHandler.Create)
+		r.Get("/{id}", productHandler.FindOne)
+		r.Get("/", productHandler.GetProducts)
+		r.Put("/{id}", productHandler.Update)
+		r.Delete("/{id}", productHandler.Delete)
+	})
 
 	r.Post("/user", userHandler.Create)
 	r.Post("/user/login", userHandler.GetJWT)
