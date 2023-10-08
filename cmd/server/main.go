@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -36,8 +35,6 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-
-	fmt.Print(configs.JWTSecret)
 
 	r.Route("/products", func(r chi.Router) {
 		r.Use(jwtauth.Verifier(configs.TokenAuth))
