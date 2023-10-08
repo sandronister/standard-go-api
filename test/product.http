@@ -29,5 +29,5 @@ DELETE  http://localhost:8080/products/dc56b970-355d-4535-a9b3-7ce550ac9b61
 ###
 
 GET http://localhost:8080/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY3ODY1MjgsInN1YiI6IjU2OTM1MjY2LWU0YTMtNGIxNS1iNGRmLThkM2U3MGExZDIwOSJ9.aLcdL9r5RwQW8xSkecWib9CWw8HvDtIZIt_GACOFmzg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY3ODgxMDUsInN1YiI6IjU2OTM1MjY2LWU0YTMtNGIxNS1iNGRmLThkM2U3MGExZDIwOSJ9.4-F9Ky8Mx4BPdbT6KolB3-l-ZvUWzZ9vQfDGzUo9foA
 Content-Type: "application/json"
