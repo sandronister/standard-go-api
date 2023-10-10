@@ -7,9 +7,11 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/jwtauth/v5"
 	"github.com/sandronister/standard-go-api/configs"
+	_ "github.com/sandronister/standard-go-api/docs"
 	"github.com/sandronister/standard-go-api/internal/entity"
 	"github.com/sandronister/standard-go-api/internal/infra/database"
 	"github.com/sandronister/standard-go-api/internal/webserver/handlers"
+	httpSwagger "github.com/swaggo/http-swagger"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -60,6 +62,8 @@ func main() {
 
 	r.Post("/user", userHandler.Create)
 	r.Post("/user/login", userHandler.GetJWT)
+
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8080/docs/doc.json")))
 
 	http.ListenAndServe(":8080", r)
 }
