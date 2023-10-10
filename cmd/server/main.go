@@ -14,6 +14,15 @@ import (
 	"gorm.io/gorm"
 )
 
+// @title           Stadard GO API
+// @version         1.0
+// @description     This is exercise swagger go api with Authentication
+// @host      localhost:8080
+// @BasePath  /
+
+// @securityDefinitions.apiKey  ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	configs, err := configs.LoadConfig(".")
 	if err != nil {
