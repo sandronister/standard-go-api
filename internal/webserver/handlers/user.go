@@ -11,6 +11,10 @@ import (
 	"github.com/sandronister/standard-go-api/internal/infra/database"
 )
 
+type Error struct {
+	Message string `json:"message"`
+}
+
 type UserHandler struct {
 	UserDB       database.UserInterface
 	Jwt          *jwtauth.JWTAuth
@@ -60,6 +64,16 @@ func (h *UserHandler) GetJWT(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(accessToken)
 }
 
+// Create user godoc
+// @Summary      Create user
+// @Description  Create user
+// @Tags         users
+// @Accept       json
+// @Produce      json
+// @Param        request     body      dto.CreateUserDTO  true  "user request"
+// @Success      201
+// @Failure      500         {object}  Error
+// @Router       /users [post]
 func (h *UserHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var user dto.CreateUserDTO
 	err := json.NewDecoder(r.Body).Decode(&user)

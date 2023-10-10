@@ -60,8 +60,8 @@ func main() {
 		r.Delete("/{id}", productHandler.Delete)
 	})
 
-	r.Post("/user", userHandler.Create)
-	r.Post("/user/login", userHandler.GetJWT)
+	r.Post("/users", userHandler.Create)
+	r.Post("/users/login", userHandler.GetJWT)
 
 	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8080/docs/doc.json")))
 
