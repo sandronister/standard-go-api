@@ -6,10 +6,10 @@ import (
 	"strconv"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/sandronister/standart-go-api/internal/dto"
-	"github.com/sandronister/standart-go-api/internal/entity"
-	"github.com/sandronister/standart-go-api/internal/infra/database"
-	entityPKG "github.com/sandronister/standart-go-api/pkg/entity"
+	"github.com/sandronister/standard-go-api/internal/dto"
+	"github.com/sandronister/standard-go-api/internal/entity"
+	"github.com/sandronister/standard-go-api/internal/infra/database"
+	entityPKG "github.com/sandronister/standard-go-api/pkg/entity"
 )
 
 type productHandler struct {

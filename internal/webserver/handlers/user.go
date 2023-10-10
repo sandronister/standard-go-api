@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/go-chi/jwtauth/v5"
-	"github.com/sandronister/standart-go-api/internal/dto"
-	"github.com/sandronister/standart-go-api/internal/entity"
-	"github.com/sandronister/standart-go-api/internal/infra/database"
+	"github.com/sandronister/standard-go-api/internal/dto"
+	"github.com/sandronister/standard-go-api/internal/entity"
+	"github.com/sandronister/standard-go-api/internal/infra/database"
 )
 
 type UserHandler struct {

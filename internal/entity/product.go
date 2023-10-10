@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/sandronister/standart-go-api/pkg/entity"
+	"github.com/sandronister/standard-go-api/pkg/entity"
 )
 
 var (
