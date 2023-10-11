@@ -109,10 +109,39 @@ paths:
       tags:
       - Products
   /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Update Product
+      parameters:
+      - description: Product ID
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Product
+      tags:
+      - Products
     get:
       consumes:
       - application/json
-      description: Get All Products
+      description: Get Product
       parameters:
       - description: Product ID
         format: uuid
@@ -137,7 +166,42 @@ paths:
             $ref: '#/definitions/handlers.Error'
       security:
       - ApiKeyAuth: []
-      summary: List Products
+      summary: Get Product
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: Update Product
+      parameters:
+      - description: Product ID
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: product request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateProductDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Product
       tags:
       - Products
   /users:

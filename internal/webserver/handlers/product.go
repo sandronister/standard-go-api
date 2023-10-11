@@ -64,10 +64,10 @@ func (h *productHandler) Create(w http.ResponseWriter, r *http.Request) {
 // @Tags         Products
 // @Accept       json
 // @Produce      json
-// @Param        id          path      string    true    "Product ID" Format(uuid)
+// @Param        id          path        string    true    "Product ID" Format(uuid)
 // @Success      200         {object}    entity.Product
-// @Failure      400         {object}   Error
-// @Failure      500         {object}   Error
+// @Failure      400         {object}    Error
+// @Failure      500         {object}    Error
 // @Router       /products/{id} [get]
 // @Security     ApiKeyAuth
 func (h *productHandler) FindOne(w http.ResponseWriter, r *http.Request) {
@@ -92,6 +92,19 @@ func (h *productHandler) FindOne(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&product)
 }
 
+// UpdateProduct godoc
+// @Summary      Update Product
+// @Description  Update Product
+// @Tags         Products
+// @Accept       json
+// @Produce      json
+// @Param        id          path      string    true    "Product ID" Format(uuid)
+// @Param        request     body      dto.CreateProductDTO  true  "product request"
+// @Success      200
+// @Failure      400         {object}   Error
+// @Failure      500         {object}   Error
+// @Router       /products/{id} [put]
+// @Security     ApiKeyAuth
 func (h *productHandler) Update(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	if id == "" {
@@ -124,6 +137,18 @@ func (h *productHandler) Update(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&product)
 }
 
+// DeleteProduct godoc
+// @Summary      Update Product
+// @Description  Update Product
+// @Tags         Products
+// @Accept       json
+// @Produce      json
+// @Param        id          path      string    true    "Product ID" Format(uuid)
+// @Success      200
+// @Failure      400         {object}   Error
+// @Failure      500         {object}   Error
+// @Router       /products/{id} [delete]
+// @Security     ApiKeyAuth
 func (h *productHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	if id == "" {
