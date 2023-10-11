@@ -59,8 +59,8 @@ func (h *productHandler) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 // GetProduct godoc
-// @Summary      List Products
-// @Description  Get All Products
+// @Summary      Get Product
+// @Description  Get Product
 // @Tags         Products
 // @Accept       json
 // @Produce      json
