@@ -108,6 +108,38 @@ paths:
       summary: Create Product
       tags:
       - Products
+  /products/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get All Products
+      parameters:
+      - description: Product ID
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.Error'
+      security:
+      - ApiKeyAuth: []
+      summary: List Products
+      tags:
+      - Products
   /users:
     post:
       consumes:
